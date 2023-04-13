@@ -1,0 +1,37 @@
+version: "2"
+
+services:
+
+  postgres:
+    image: alpine3.17
+    restart: always
+    ports:
+      - 5432
+    # volumes:
+    #   - /app/minion/postgres:/var/lib/postgresql/data
+    # env_file:
+    #   - .env
+
+  client:
+    build: "./client"
+    container_name: client
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - back
+
+  server:
+    build: "./server"
+    container_name: server
+    restart: always
+    ports:
+      - "8888:8888"
+    # volumes:
+    #   - /app/server-data/uploads:/app/uploads
+    # environment:
+    #   - REDIS_DB=redis
+    #   - MONGO_DB=mongo
+    # depends_on:
+    #   - postgres
+    #   - client

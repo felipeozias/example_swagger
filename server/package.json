@@ -1,0 +1,32 @@
+{
+  "name": "minion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node-dev ./src/server.ts",
+    "dev": "sucrase-node ./src/server.ts",
+    "doc": "clear && tsnd ./src/swagger.ts",
+    "teste": "yarn doc && yarn dev",
+    "build": "",
+    "prismad": "prisma migrate dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^4.12.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "swagger-ui-express": "^4.6.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/swagger-ui-express": "^4.1.3",
+    "prisma": "^4.12.0",
+    "sucrase": "^3.32.0",
+    "swagger-autogen": "^2.23.1",
+    "ts-node-dev": "^2.0.0"
+  }
+}

@@ -1,0 +1,36 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "",
+        "description": "",
+        "version": "1.0.0"
+    },
+    "servers": {
+        "url": "URL OFICIAL DE PRODUÇÃO",
+        "description": "App em produção"
+    },
+    "paths": {
+        "/docs": {
+            "get": {
+                "summary": "Documentação da API",
+                "description": "Essa é a documentação completa",
+                "tags": [
+                    "documentação"
+                ],
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "propeties": {
+                                    "Campo": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
