@@ -7,21 +7,15 @@ export const peopleControler = {
         res.status(200).json({ data: [{ id: 'uuid', full_name: 'Nome Completo1' }, { id: 'uuid', full_name: 'Nome Completo2' }], status: 200 });
 
         /*
-            #swagger.auto = false
-            #swagger.tags = ['People']
-            #swagger.description = 'Endpoint para obter todos os registros'
-    
-            #swagger.parameters['authorization'] = {
-                in: 'header',
-                description: 'Token do usuário',
-                required: true,
-                type: 'string'
-            }
-            
-            #swagger.responses[200] = { description: 'OK', schema: { data: [{id:'uuid', full_name: 'Nome Completo' }], status: 200 } }
-            #swagger.responses[401] = { description: 'Não autorizado', schema: { $ref: '#/definitions/Error401' } }
-            #swagger.responses[500] = { description: 'Erro interno do servidor', schema: { $ref: '#/definitions/Error500' } }
-        */
+           #swagger.auto = false
+           #swagger.tags = ['People']
+           #swagger.description = 'Endpoint to get all records'
+           #swagger.parameters['authorization'] = { $ref: '#/components/schemas/people/authorization' }
+           
+           #swagger.responses[200] = { description: 'Ok', schema: { $ref: '#/components/peopleResponses200' } }
+           #swagger.responses[401] = { description: 'Unauthorized', schema: { $ref: '#/components/error401' } }
+           #swagger.responses[500] = { description: 'Internal server error', schema: { $ref: '#/components/error500' } }
+       */
     },
 
     create: async (req: Request, res: Response) => {
@@ -31,33 +25,14 @@ export const peopleControler = {
         /*
             #swagger.auto = false
             #swagger.tags = ['People']
-            #swagger.description = 'Endpoint para criar um novo registro pessoal'
-    
-            #swagger.parameters['authorization'] = {
-                in: 'header',
-                description: 'Token do usuário',
-                required: true,
-                type: 'string'
-            }
-    
-            #swagger.parameters['obj'] = {
-                in: 'body',
-                description: 'Informações para registro pessoal',
-                schema: {
-                    full_name: 'Nome completo',
-                    email: 'user@mail.com',
-                    password: 'password',
-                    position: 'asp',
-                    sex: 'M'
-                },
-                required: true,
-                type: 'object'
-            }
+            #swagger.description = 'Endpoint to create a new personal record'
+            #swagger.parameters['authorization'] = { $ref: '#/components/schemas/people/authorization' }
+            #swagger.parameters['object'] = { $ref: '#/components/schemas/people/reqBody' }
             
-            #swagger.responses[200] = { description: 'OK', schema: { data: {id:'uuid', full_name: 'Nome Completo' }, status: 200 } }
-            #swagger.responses[401] = { description: 'Não autorizado', schema: { $ref: '#/definitions/Error401' } }
-            #swagger.responses[400] = { description: 'Parâmetros incorretos ou ausentes', schema: { errors:['Parâmetros incorretos ou ausentes'], status: 400 } }
-            #swagger.responses[500] = { description: 'Erro interno do servidor', schema: { $ref: '#/definitions/Error500' } }
+            #swagger.responses[200] = { description: 'Ok', schema: { $ref: '#/components/peopleResponses200' } }
+            #swagger.responses[400] = { description: 'Incorrect or missing parameters', schema: { $ref: '#/components/peopleResponses400' } }
+            #swagger.responses[401] = { description: 'Unauthorized', schema: { $ref: '#/components/error401' } }
+            #swagger.responses[500] = { description: 'Internal server error', schema: { $ref: '#/components/error500' } }
         */
     },
 
@@ -68,62 +43,31 @@ export const peopleControler = {
         /*
             #swagger.auto = false
             #swagger.tags = ['People']
-            #swagger.description = 'Endpoint para atualizar um registro'
-    
-            #swagger.parameters['authorization'] = {
-                in: 'header',
-                description: 'Token do usuário',
-                required: true,
-                type: 'string'
-            }
-    
-            #swagger.parameters['obj'] = {
-                in: 'body',
-                description: 'Informações para registro pessoal',
-                schema: {
-                    full_name: 'Nome completo',
-                    email: 'user@mail.com',
-                    password: 'password',
-                    position: 'asp',
-                    sex: 'M'
-                },
-                required: true,
-                type: 'object'
-            }
+            #swagger.description = 'Endpoint for updating a record'
+            #swagger.parameters['authorization'] = { $ref: '#/components/schemas/people/authorization' }
+            #swagger.parameters['object'] = { $ref: '#/components/schemas/people/reqBody' }
             
-            #swagger.responses[200] = { description: 'OK', schema: { data: {id:'uuid', full_name: 'Nome Completo' }, status: 200 } }
-            #swagger.responses[400] = { description: 'Parâmetros incorretos ou ausentes', schema: { errors:['Parâmetros incorretos ou ausentes'], status: 400 } }
-            #swagger.responses[401] = { description: 'Não autorizado', schema: { $ref: '#/definitions/Error401' } }
-            #swagger.responses[500] = { description: 'Erro interno do servidor', schema: { $ref: '#/definitions/Error500' } }
+            #swagger.responses[200] = { description: 'Ok', schema: { $ref: '#/components/peopleResponses200' } }
+            #swagger.responses[400] = { description: 'Incorrect or missing parameters', schema: { $ref: '#/components/peopleResponses400' } }
+            #swagger.responses[401] = { description: 'Unauthorized', schema: { $ref: '#/components/error401' } }
+            #swagger.responses[500] = { description: 'Internal server error', schema: { $ref: '#/components/error500' } }
         */
     },
 
     delete: async (req: Request, res: Response) => {
 
-        res.status(200).json({ data: 'Usuário deletado com sucesso', status: 200 });
+        res.status(200).json({ data: { id: 'uuid', full_name: 'Nome Completo' }, status: 200 });
 
         /*
             #swagger.auto = false
             #swagger.tags = ['People']
-            #swagger.description = 'Endpoint para deletar um registro'
-    
-            #swagger.parameters['authorization'] = {
-                in: 'header',
-                description: 'Token do usuário',
-                required: true,
-                type: 'string'
-            }
-    
-            #swagger.parameters['id'] = {
-                in: 'path',
-                description: 'Id do registro a ser deletado',
-                required: true,
-                type: 'string'
-            }
+            #swagger.description = 'Endpoint to delete a record'
+            #swagger.parameters['authorization'] = { $ref: '#/components/schemas/people/authorization' }
+            #swagger.parameters['id'] = { $ref: '#/components/schemas/people/idParameter' }
             
-            #swagger.responses[200] = { description: 'OK', schema: { data: 'Usuário deletado com sucesso', status: 200 } }
-            #swagger.responses[401] = { description: 'Não autorizado', schema: { $ref: '#/definitions/Error401' } }
-            #swagger.responses[500] = { description: 'Erro interno do servidor', schema: { $ref: '#/definitions/Error500' } }
+            #swagger.responses[200] = { description: 'Ok', schema: { $ref: '#/components/peopleResponses200' } }
+            #swagger.responses[401] = { description: 'Unauthorized', schema: { $ref: '#/components/error401' } }
+            #swagger.responses[500] = { description: 'Internal server error', schema: { $ref: '#/components/error500' } }
         */
     },
 }

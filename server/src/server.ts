@@ -13,7 +13,8 @@ app.use(Express.urlencoded({ extended: true }));
 app.use(Express.json());
 
 server.listen(process.env.PORT, () => {
+    console.log("****************************************");
     console.log(`🔰 Servidor rodando na porta ${process.env.PORT}!`);
+    console.log("****************************************");
 });
 
-console.log("****************************");

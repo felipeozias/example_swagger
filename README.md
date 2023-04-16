@@ -1,1 +1,1 @@
-# example_swagger
+# Projeto Alpha Minion

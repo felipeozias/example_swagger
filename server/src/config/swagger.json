@@ -33,89 +33,29 @@
         "tags": [
           "Users"
         ],
-        "description": "Endpoint para autenticar usuário",
+        "description": "Endpoint to authenticate user",
         "parameters": [
           {
-            "name": "obj",
-            "in": "body",
-            "description": "Email e senha do usuário",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "type": "string",
-                  "example": "user@mail.com"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "password"
-                }
-              }
-            }
+            "$ref": "#/components/schemas/users/reqBody"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Ok",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "uuid"
-                    },
-                    "full_name": {
-                      "type": "string",
-                      "example": "Nome Completo"
-                    },
-                    "token": {
-                      "type": "string",
-                      "example": "token_gerado_automaticamente"
-                    }
-                  }
-                },
-                "status": {
-                  "type": "number",
-                  "example": 200
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
+              "$ref": "#/components/usersResponses200"
             }
           },
           "401": {
-            "description": "Credenciais incorretas",
+            "description": "Incorrect credentials",
             "schema": {
-              "type": "object",
-              "properties": {
-                "errors": {
-                  "type": "array",
-                  "example": [
-                    "Credenciais incorretas"
-                  ],
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "status": {
-                  "type": "number",
-                  "example": 401
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
+              "$ref": "#/components/usersResponses401"
             }
           },
           "500": {
-            "description": "Erro interno do servidor",
+            "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/Error500"
+              "$ref": "#/components/error500"
             }
           }
         }
@@ -126,58 +66,29 @@
         "tags": [
           "People"
         ],
-        "description": "Endpoint para obter todos os membros",
+        "description": "Endpoint to get all records",
         "parameters": [
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "Token do usuário",
-            "required": true,
-            "type": "string"
+            "$ref": "#/components/schemas/people/authorization"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Ok",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string",
-                        "example": "uuid"
-                      },
-                      "full_name": {
-                        "type": "string",
-                        "example": "Nome Completo"
-                      }
-                    }
-                  }
-                },
-                "status": {
-                  "type": "number",
-                  "example": 200
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
+              "$ref": "#/components/peopleResponses200"
             }
           },
           "401": {
-            "description": "Não autorizado",
+            "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error401"
+              "$ref": "#/components/error401"
             }
           },
           "500": {
-            "description": "Erro interno do servidor",
+            "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/Error500"
+              "$ref": "#/components/error500"
             }
           }
         }
@@ -186,110 +97,38 @@
         "tags": [
           "People"
         ],
-        "description": "Endpoint para criar um novo registro pessoal",
+        "description": "Endpoint to create a new personal record",
         "parameters": [
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "Token do usuário",
-            "required": true,
-            "type": "string"
+            "$ref": "#/components/schemas/people/authorization"
           },
           {
-            "name": "obj",
-            "in": "body",
-            "description": "Informações para registro pessoal",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "full_name": {
-                  "type": "string",
-                  "example": "Nome completo"
-                },
-                "email": {
-                  "type": "string",
-                  "example": "user@mail.com"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "password"
-                },
-                "position": {
-                  "type": "string",
-                  "example": "asp"
-                },
-                "sex": {
-                  "type": "string",
-                  "example": "M"
-                }
-              }
-            },
-            "required": true
+            "$ref": "#/components/schemas/people/reqBody"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Ok",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "uuid"
-                    },
-                    "full_name": {
-                      "type": "string",
-                      "example": "Nome Completo"
-                    }
-                  }
-                },
-                "status": {
-                  "type": "number",
-                  "example": 200
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
+              "$ref": "#/components/peopleResponses200"
             }
           },
           "400": {
-            "description": "Parâmetros incorretos ou ausentes",
+            "description": "Incorrect or missing parameters",
             "schema": {
-              "type": "object",
-              "properties": {
-                "errors": {
-                  "type": "array",
-                  "example": [
-                    "Parâmetros incorretos ou ausentes"
-                  ],
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "status": {
-                  "type": "number",
-                  "example": 400
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
+              "$ref": "#/components/peopleResponses400"
             }
           },
           "401": {
-            "description": "Não autorizado",
+            "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error401"
+              "$ref": "#/components/error401"
             }
           },
           "500": {
-            "description": "Erro interno do servidor",
+            "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/Error500"
+              "$ref": "#/components/error500"
             }
           }
         }
@@ -298,110 +137,38 @@
         "tags": [
           "People"
         ],
-        "description": "Endpoint para atualizar um registro",
+        "description": "Endpoint for updating a record",
         "parameters": [
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "Token do usuário",
-            "required": true,
-            "type": "string"
+            "$ref": "#/components/schemas/people/authorization"
           },
           {
-            "name": "obj",
-            "in": "body",
-            "description": "Informações para registro pessoal",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "full_name": {
-                  "type": "string",
-                  "example": "Nome completo"
-                },
-                "email": {
-                  "type": "string",
-                  "example": "user@mail.com"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "password"
-                },
-                "position": {
-                  "type": "string",
-                  "example": "asp"
-                },
-                "sex": {
-                  "type": "string",
-                  "example": "M"
-                }
-              }
-            },
-            "required": true
+            "$ref": "#/components/schemas/people/reqBody"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Ok",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "uuid"
-                    },
-                    "full_name": {
-                      "type": "string",
-                      "example": "Nome Completo"
-                    }
-                  }
-                },
-                "status": {
-                  "type": "number",
-                  "example": 200
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
+              "$ref": "#/components/peopleResponses200"
             }
           },
           "400": {
-            "description": "Parâmetros incorretos ou ausentes",
+            "description": "Incorrect or missing parameters",
             "schema": {
-              "type": "object",
-              "properties": {
-                "errors": {
-                  "type": "array",
-                  "example": [
-                    "Parâmetros incorretos ou ausentes"
-                  ],
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "status": {
-                  "type": "number",
-                  "example": 400
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
+              "$ref": "#/components/peopleResponses400"
             }
           },
           "401": {
-            "description": "Não autorizado",
+            "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error401"
+              "$ref": "#/components/error401"
             }
           },
           "500": {
-            "description": "Erro interno do servidor",
+            "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/Error500"
+              "$ref": "#/components/error500"
             }
           }
         }
@@ -412,67 +179,262 @@
         "tags": [
           "People"
         ],
-        "description": "Endpoint para deletar um registro",
+        "description": "Endpoint to delete a record",
         "parameters": [
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "Token do usuário",
-            "required": true,
-            "type": "string"
+            "$ref": "#/components/schemas/people/authorization"
           },
           {
-            "name": "id",
-            "in": "path",
-            "description": "Id do registro a ser deletado",
-            "required": true,
-            "type": "string"
+            "$ref": "#/components/schemas/people/idParameter"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Ok",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "type": "string",
-                  "example": "Usuário deletado com sucesso"
-                },
-                "status": {
-                  "type": "number",
-                  "example": 200
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
+              "$ref": "#/components/peopleResponses200"
             }
           },
           "401": {
-            "description": "Não autorizado",
+            "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error401"
+              "$ref": "#/components/error401"
             }
           },
           "500": {
-            "description": "Erro interno do servidor",
+            "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/Error500"
+              "$ref": "#/components/error500"
             }
           }
         }
       }
     }
   },
-  "definitions": {
-    "Error401": {
+  "components": {
+    "schemas": {
+      "people": {
+        "reqBody": {
+          "name": "object",
+          "in": "body",
+          "description": "Personal registration information",
+          "required": true,
+          "schema": {
+            "properties": {
+              "full_name": {
+                "type": "string",
+                "example": "Full name"
+              },
+              "email": {
+                "type": "string",
+                "example": "name@mail.com"
+              },
+              "password": {
+                "type": "string",
+                "example": "***"
+              }
+            }
+          }
+        },
+        "responses200": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "types": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "example": "uuid"
+                  },
+                  "full_name": {
+                    "type": "string",
+                    "example": "Full name"
+                  }
+                }
+              }
+            },
+            "status": {
+              "type": "number",
+              "example": 200
+            }
+          }
+        },
+        "responses400": {
+          "type": "object",
+          "properties": {
+            "errors": {
+              "type": "array",
+              "example": [
+                "Incorrect or missing parameters"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "status": {
+              "type": "number",
+              "example": 400
+            }
+          }
+        },
+        "idParameter": {
+          "name": "id",
+          "in": "path",
+          "description": "Id of the record to be deleted",
+          "required": true,
+          "type": "string"
+        },
+        "authorization": {
+          "name": "authorization",
+          "in": "header",
+          "description": "User token",
+          "required": true,
+          "type": "string"
+        }
+      },
+      "users": {
+        "reqBody": {
+          "name": "object",
+          "in": "body",
+          "description": "User email and password",
+          "required": true,
+          "schema": {
+            "properties": {
+              "email": {
+                "type": "string",
+                "example": "name@mail.com"
+              },
+              "password": {
+                "type": "string",
+                "example": "***"
+              }
+            }
+          }
+        },
+        "responses200": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "uuid"
+                },
+                "full_name": {
+                  "type": "string",
+                  "example": "Full name"
+                },
+                "token": {
+                  "type": "string",
+                  "example": "token"
+                }
+              }
+            },
+            "status": {
+              "type": "number",
+              "example": 200
+            }
+          }
+        },
+        "responses401": {
+          "type": "object",
+          "properties": {
+            "errors": {
+              "type": "array",
+              "example": [
+                "Incorrect credentials"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "status": {
+              "type": "number",
+              "example": 401
+            }
+          }
+        }
+      }
+    },
+    "peopleResponses200": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "types": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "uuid"
+              },
+              "full_name": {
+                "type": "string",
+                "example": "Full name"
+              }
+            }
+          }
+        },
+        "status": {
+          "type": "number",
+          "example": 200
+        }
+      }
+    },
+    "peopleResponses400": {
       "type": "object",
       "properties": {
         "errors": {
           "type": "array",
           "example": [
-            "Não autorizado"
+            "Incorrect or missing parameters"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "number",
+          "example": 400
+        }
+      }
+    },
+    "usersResponses200": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "uuid"
+            },
+            "full_name": {
+              "type": "string",
+              "example": "Full name"
+            },
+            "token": {
+              "type": "string",
+              "example": "token"
+            }
+          }
+        },
+        "status": {
+          "type": "number",
+          "example": 200
+        }
+      }
+    },
+    "usersResponses401": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "example": [
+            "Incorrect credentials"
           ],
           "items": {
             "type": "string"
@@ -484,13 +446,31 @@
         }
       }
     },
-    "Error500": {
+    "error401": {
       "type": "object",
       "properties": {
         "errors": {
           "type": "array",
           "example": [
-            "Erro interno do servidor"
+            "Unauthorized"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "number",
+          "example": 401
+        }
+      }
+    },
+    "error500": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "example": [
+            "Internal server error"
           ],
           "items": {
             "type": "string"

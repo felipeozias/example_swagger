@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocs from '../config/swagger.json';
-import { userControler } from '../controllers/userController';
+import { userControler } from '../controllers/usersController';
 import { peopleControler } from '../controllers/peopleController';
 
 const options = {
@@ -12,7 +12,7 @@ const options = {
 
 const router = Router();
 
-router.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs, options));
+router.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs, options, { showCommonExtensions: false }));
 
 router.post('/users/authenticate', userControler.authenticate);
 
